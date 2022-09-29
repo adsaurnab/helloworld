@@ -23,6 +23,16 @@ class DefaultWidgets {
     );
 
   }
+
+  static  headerText (text){
+    return Text(text,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 32
+      ),
+    );
+
+  }
   
 }
 

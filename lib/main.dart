@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld/screens/allmovies.dart';
+import 'package:helloworld/screens/chooseIntrest.dart';
 import 'package:helloworld/screens/dashboard.dart';
 import 'package:helloworld/screens/details.dart';
 import 'package:helloworld/screens/signup.dart';
@@ -23,13 +24,17 @@ class MyApp extends StatelessWidget {
       // home:  Dashboard(),
       
       // MyHomePage(title: "hello",)
-      initialRoute: "/",
+      initialRoute: 
+      ChooseIntrest.routeName,
+      // "/",
       routes: {
         Dashboard.routeName: (cxt) => Dashboard(),
 
         AllMovies.routeName: (ctx) => AllMovies(),
         Details.routeName: (ctx) => Details(),
         Signup.routeName: (ctx) => Signup(),
+        ChooseIntrest.routeName: (ctx) => ChooseIntrest(),
+        
         
 
 
