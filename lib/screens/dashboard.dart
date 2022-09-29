@@ -7,6 +7,10 @@ import 'package:helloworld/model/ApiData.dart';
 import 'package:helloworld/screens/allmovies.dart';
 import 'package:helloworld/screens/widgets/appDrawer.dart';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:helloworld/screens/widgets/featuredMovie.dart';
+import 'package:helloworld/screens/widgets/mycarousel.dart';
+
 import '../utils/utils.dart';
 
 class Dashboard extends StatefulWidget {
@@ -37,45 +41,65 @@ class _DashboardState extends State<Dashboard> {
 
 
         body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20,
+          vertical: 10
+          ),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                getandsortapidata(),
+                getandsortapidata(mywidget:new mycarousel()),
 
-        Container(
-          child: Text("Featured Movie"),
+                Container(
+                  child: Text("Featured Movie"),
 
-        ),
+                ),
 
-        Container(
-                    height: 150,
-                    padding: Utils.padding10_left,
-                    child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      children: []
-                        // data.map((text){ 
-                        //   return Container(
-                        //     margin: Utils.padding10_left_right,
-                            
-                        //     width: 250,
-                        //     height: 150,
-                        //     decoration: BoxDecoration(
-                        //       color: Colors.grey,
-                        //       borderRadius: BorderRadius.circular(10)
-                        //     ),
-                        //     child: ClipRRect(
-                        //       borderRadius: BorderRadius.circular(10),
-                        //       child: Image.asset(text)
-                        //     ),
-                        //   );
-                          
-                        // }).toList(),
-                    )
+                Container(
+                            height: 350,
+                            width: double.infinity,
+                            padding: Utils.padding10_left,
+                            child: 
+                            // ListView(
+                            //   shrinkWrap: true,
+                            //   scrollDirection: Axis.horizontal,
+                            //   children: [
+
+                                getandsortapidatafeatured(mywidget:featuredWidget()),
+                                // featuredWidget() 
+
+                              // ]
+                                
+                                  
+                                // }).toList(),
+                            // )
+                          ),
+
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Featured Jobs"),
+
+                      Row(
+                        children: [
+                          Text("Show All"),
+                          SizedBox(width: 5,),
+                          Container(
+                            color: Colors.black,
+                            child: Icon(Icons.arrow_right, color: Colors.white,))
+                        ],
+                      )
+                    ],
                   ),
 
-                
+                ),
+
+
+
+
+
               ],
             ),
 
@@ -91,8 +115,10 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-class getandsortapidata extends StatelessWidget {
-  const getandsortapidata({
+class getandsortapidatafeaturedjobs extends StatelessWidget {
+  
+  const getandsortapidatafeaturedjobs({
+    
     Key? key,
   }) : super(key: key);
 
@@ -106,80 +132,66 @@ class getandsortapidata extends StatelessWidget {
             child: Center(child: CircularProgressIndicator()),
           );
         } else {
+          
 
-    return  mycarousel(response: response);
+          return ListView.builder(
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: response.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return  featuredWidget(response:  response.data[index]);
+                        });
+        }
+      }
+    );
+                          
 
-        }});
+                       
+
+    
   }
 }
 
-class mycarousel extends StatelessWidget {
-  final  response;
-  const mycarousel({
-    @required this.response,
+class featuredJobsWidget extends StatelessWidget {
+  var  response;
+   featuredJobsWidget({
+    this.response,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 30
-
-      ),
-      child: Container(
-        width: double.infinity,
-        child: CarouselSlider.builder(
-          
-          itemCount: response.data.length,
-          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+    return Container(
+      width: 150,
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Icon(Icons.star),
+              SizedBox(width: 5,),
+              Text("9.2")
+            ],
+          ),
 
           Container(
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            height: 150,
+            child: Image.network(response["imagePath"])),
+
+          Container(
+            // width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 200,
-                  child: Center(
-                    child: Image.network(
-                    
-                      response.data[itemIndex]["imagePath"],
+                
+                Text("Year: 2004"),
 
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-
-                Container(
-                  child: Text(
-                    "${response.data[itemIndex]['title']}"
-                  ),
-                )
+                Icon(FontAwesomeIcons.heart),
               ],
             ),
           ),
-          
-          
-         
-          
-          options: CarouselOptions(
-              height: 250,
-              // aspectRatio: 8/2,
-              viewportFraction: 1,
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              reverse: false,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 20),
-              autoPlayAnimationDuration: Duration(seconds:1),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              // enlargeCenterPage: true,
-              // onPageChanged: callbackFunction,
-              scrollDirection: Axis.horizontal,
-          )
-        ),
+        ],
       ),
     );
   }
