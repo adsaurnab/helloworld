@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:helloworld/model/ApiData.dart';
 import 'package:helloworld/screens/allmovies.dart';
+import 'package:helloworld/screens/widgets/appDrawer.dart';
 
 class Dashboard extends StatefulWidget {
   static const routeName = '/';
@@ -19,39 +21,7 @@ class _DashboardState extends State<Dashboard> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title:Text("Hello Good Morning")),
-        drawer: Drawer(
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            AppBar(
-              backgroundColor: Colors.blue,
-              toolbarHeight: 70,
-              title: Center(child: Text('App')),
-              automaticallyImplyLeading: false,
-              centerTitle: false,
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.dashboard,
-              ),
-              title: Text("Dashboard"),
-              onTap: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(Dashboard.routeName);
-              },
-            ),
-
-            ListTile(
-              leading: Icon(
-                Icons.dashboard,
-              ),
-              title: Text("All Movies"),
-              onTap: () {
-                Navigator.of(context)
-                    .pushReplacementNamed(AllMovies.routeName);
-              },
-            ),
-          ]))),
+        drawer: Appdrawer(),
 
 
         body: Container(
@@ -59,22 +29,79 @@ class _DashboardState extends State<Dashboard> {
             child: Column(
               children: [
 
-                Container(
-                  child: Column(
-                    children: [
-                      
-                      Container(
-                        child: Image.network("https://c8.alamy.com/comp/PMBTWT/the-new-animated-adventure-storks-a-warner-bros-pictures-release-poster-PMBTWT.jpg"),
+                FutureBuilder(
+      future: ApiData().getApiData(),
+      builder: (BuildContext context, AsyncSnapshot response) {
+        if (response.data == null) {
+          return Container(
+            child: Center(child: CircularProgressIndicator()),
+          );
+        } else {
+
+                return Column(
+                  children: [
+                    Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          
+                          Container(
+                            width: double.infinity,
+                            height: 250,
+                            child: Image.network("${response.data[0]["imagePath"]}"),
+                          ),
+                          Container(
+                            child: Text("Movie Title"),
+                          ),
+
+                          
+                        ],
+
+                        
+
                       ),
-                      Container(
-                        child: Text("Movie Title"),
-                      )
-                    ],
-                  ),
-                )
+                    ),
+
+                    Container(
+                      child: Row(
+                        children: [
+                          ListView.builder(
+
+                        shrinkWrap: false,
+                        physics: ClampingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: response.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            width: 10,
+                            height: 10,
+                             
+                            child: Container(
+                              height: 10,
+                              width: 10,
+                              
+                              color: Colors.black),
+                          );
+
+
+
+                        })
+                          
+                        ],
+                      ),
+                    )
+                  ],
+                );
+
+
+
+        }})
                 
               ],
             ),
+
+
+
           ),
         ),
         )
@@ -82,3 +109,4 @@ class _DashboardState extends State<Dashboard> {
     
   }
 }
+
