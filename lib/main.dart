@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld/screens/allmovies.dart';
+import 'package:helloworld/screens/dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,9 +18,20 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home:  AllMovies()
+      // home:  Dashboard(),
       
       // MyHomePage(title: "hello",)
+      initialRoute: "/",
+      routes: {
+        "/": (cxt) => Dashboard(),
+
+        AllMovies.routeName: (ctx) => AllMovies(),
+
+
+      },
+
+
+
     );
   }
 }
