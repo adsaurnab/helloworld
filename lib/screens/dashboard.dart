@@ -17,7 +17,7 @@ import 'package:helloworld/screens/widgets/mycarousel.dart';
 import '../utils/utils.dart';
 
 class Dashboard extends StatefulWidget {
-  static const routeName = '/';
+  static const routeName = '/dashboard';
   const Dashboard({Key? key}) : super(key: key);
 
   @override
@@ -39,7 +39,25 @@ class _DashboardState extends State<Dashboard> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title:Text("Hello Good Morning")),
+        appBar: AppBar(title:Text("Hello Good Morning"),
+          actions: [
+             Container(
+            width: 50,
+            // color: Colors.black,
+            child: InkWell(
+              child: const Icon(Icons.search,
+                // color: Colors.red,
+                size: 25,
+              ),
+              onTap: (){
+                
+                  
+                
+              },  
+            ),
+          )
+          ],
+        ),
         drawer: Appdrawer(),
         bottomNavigationBar: AppBottomNavigationBar(),
 
@@ -91,14 +109,20 @@ class _DashboardState extends State<Dashboard> {
                       DefaultWidgets.featuredText("Featured Jobs"),
                       // Text("Featured Jobs"),
 
-                      Row(
-                        children: [
-                          Text("Show All"),
-                          SizedBox(width: 5,),
-                          Container(
-                            color: Colors.black,
-                            child: Icon(Icons.arrow_right, color: Colors.white,))
-                        ],
+                      InkWell(
+                        child: Row(
+                          children: [
+                            Text("Show All"),
+                            SizedBox(width: 5,),
+                            Container(
+                              color: Colors.black,
+                              child: Icon(Icons.arrow_right, color: Colors.white,))
+                          ],
+                        ),
+
+                        onTap: (){
+                              
+                            },
                       )
                     ],
                   ),

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:helloworld/model/ApiData.dart';
+import 'package:helloworld/screens/details.dart';
 
 class getandsortapidatafeatured extends StatelessWidget {
   final mywidget;
@@ -60,37 +61,44 @@ class featuredWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Icon(Icons.star),
-              SizedBox(width: 5,),
-              Text("9.2")
-            ],
-          ),
-
-          Container(
-            height: 150,
-            child: Image.network(response["imagePath"])),
-
-          Container(
-            // width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return InkWell(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Details(details: response),
+                ));
+      },
+      child: Container(
+        width: 150,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Row(
               children: [
-                
-                Text("Year: 2004"),
-
-                Icon(FontAwesomeIcons.heart),
+                Icon(Icons.star),
+                SizedBox(width: 5,),
+                Text("9.2")
               ],
             ),
-          ),
-        ],
+    
+            Container(
+              height: 150,
+              child: Image.network(response["imagePath"])),
+    
+            Container(
+              // width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  
+                  Text("Year: 2004"),
+    
+                  Icon(FontAwesomeIcons.heart),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
