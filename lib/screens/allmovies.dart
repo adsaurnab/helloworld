@@ -35,7 +35,7 @@ class _AllMoviesState extends State<AllMovies> {
             size: 30,
             color: Colors.white,
           ),
-          onPressed: () => Navigator.of(context).pushReplacementNamed('/'),
+          onPressed: () => Navigator.of(context).pop(),
         ),
           title: Text("All Movies"),
         ),

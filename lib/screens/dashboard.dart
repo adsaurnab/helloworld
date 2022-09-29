@@ -8,7 +8,10 @@ import 'package:helloworld/screens/allmovies.dart';
 import 'package:helloworld/screens/widgets/appDrawer.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:helloworld/screens/widgets/bottomnavigationbar.dart';
+import 'package:helloworld/screens/widgets/defaultwidgets.dart';
 import 'package:helloworld/screens/widgets/featuredMovie.dart';
+import 'package:helloworld/screens/widgets/featuredjobs.dart';
 import 'package:helloworld/screens/widgets/mycarousel.dart';
 
 import '../utils/utils.dart';
@@ -38,6 +41,7 @@ class _DashboardState extends State<Dashboard> {
       child: Scaffold(
         appBar: AppBar(title:Text("Hello Good Morning")),
         drawer: Appdrawer(),
+        bottomNavigationBar: AppBottomNavigationBar(),
 
 
         body: Container(
@@ -52,12 +56,15 @@ class _DashboardState extends State<Dashboard> {
                 getandsortapidata(mywidget:new mycarousel()),
 
                 Container(
-                  child: Text("Featured Movie"),
+                  child: DefaultWidgets.featuredText("Featured Movie"),
+                  
+                  // Text("Featured Movie"),
 
                 ),
+                SizedBox(height: 20,),
 
                 Container(
-                            height: 350,
+                            height: 250,
                             width: double.infinity,
                             padding: Utils.padding10_left,
                             child: 
@@ -80,7 +87,9 @@ class _DashboardState extends State<Dashboard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Featured Jobs"),
+
+                      DefaultWidgets.featuredText("Featured Jobs"),
+                      // Text("Featured Jobs"),
 
                       Row(
                         children: [
@@ -95,6 +104,9 @@ class _DashboardState extends State<Dashboard> {
                   ),
 
                 ),
+                SizedBox(height: 10,),
+
+                getandsortapidatafeaturedjobs(),
 
 
 
@@ -114,86 +126,3 @@ class _DashboardState extends State<Dashboard> {
     
   }
 }
-
-class getandsortapidatafeaturedjobs extends StatelessWidget {
-  
-  const getandsortapidatafeaturedjobs({
-    
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: ApiData().getApiData(),
-      builder: (BuildContext context, AsyncSnapshot response) {
-        if (response.data == null) {
-          return Container(
-            child: Center(child: CircularProgressIndicator()),
-          );
-        } else {
-          
-
-          return ListView.builder(
-                        shrinkWrap: true,
-                        physics: ClampingScrollPhysics(),
-                        itemCount: response.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return  featuredWidget(response:  response.data[index]);
-                        });
-        }
-      }
-    );
-                          
-
-                       
-
-    
-  }
-}
-
-class featuredJobsWidget extends StatelessWidget {
-  var  response;
-   featuredJobsWidget({
-    this.response,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Icon(Icons.star),
-              SizedBox(width: 5,),
-              Text("9.2")
-            ],
-          ),
-
-          Container(
-            height: 150,
-            child: Image.network(response["imagePath"])),
-
-          Container(
-            // width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                
-                Text("Year: 2004"),
-
-                Icon(FontAwesomeIcons.heart),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
