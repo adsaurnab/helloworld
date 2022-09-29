@@ -24,10 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       // home:  Dashboard(),
       
-      // MyHomePage(title: "hello",)
       initialRoute: 
-      // SavedMovies.routeName,
-      // Dashboard.routeName,
       "/",
       routes: {
         Dashboard.routeName: (cxt) => Dashboard(),

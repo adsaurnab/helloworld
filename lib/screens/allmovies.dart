@@ -13,6 +13,8 @@ class AllMovies extends StatefulWidget {
 
 class _AllMoviesState extends State<AllMovies> {
 
+  // enum StepState
+
   int currentstep =0;
 @override
   void initState() {
@@ -78,7 +80,9 @@ class _AllMoviesState extends State<AllMovies> {
                         title: Text("Rio"), 
                         content: Container(
                           
-                        )
+                        ),
+                        // state: 
+
                       ),
 
                       Step(
@@ -93,6 +97,14 @@ class _AllMoviesState extends State<AllMovies> {
                         // subtitle: Text("asd"),
                         title: Text("Rango"), 
                         subtitle: Text("Captured by smugglers when he was just a hatchling, a macaw named Blu (Lorànt Deutsch) never learned to fly but has a happy domesticated life in Minnesota with Linda (Élisabeth Ventura), who thinks he is the last of his breed."),
+                        content: Container(
+                          
+                        )
+                      ),
+
+                      Step(
+                        // subtitle: Text("asd"),
+                        title: Text("Raya"), 
                         content: Container(
                           
                         )
