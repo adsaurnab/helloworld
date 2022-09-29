@@ -56,6 +56,10 @@ class Utils{
   static const double fontsize_xsmall= 12;
   static const double fontsize_xxsmall= 10;
 
+  static Widget sizedboxheight10(){
+    return SizedBox(height: 10,);
+  } 
+
   
   
 

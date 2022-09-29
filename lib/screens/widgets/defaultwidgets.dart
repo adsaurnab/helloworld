@@ -13,6 +13,16 @@ class DefaultWidgets {
     );
 
   }
+
+  static  SignupText (text){
+    return Text(text,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 36
+      ),
+    );
+
+  }
   
 }
 
