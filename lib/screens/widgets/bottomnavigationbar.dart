@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:helloworld/screens/allmovies.dart';
 import 'package:helloworld/screens/dashboard.dart';
+import 'package:helloworld/screens/savedmovies.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
   var screenNum;
@@ -37,16 +38,16 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   void _onItemTapped(int index) {
     setState(() {
       if (index == 0) {
-        Navigator.of(context).pushReplacementNamed(Dashboard.routeName);
+        Navigator.of(context).pushNamed(Dashboard.routeName);
       }
       if (index == 1) {
         Navigator.of(context)
-            .pushReplacementNamed(AllMovies.routeName);
+            .pushNamed(AllMovies.routeName);
       }
 
-      // if (index == 2) {
-      //   Navigator.of(context).pushReplacementNamed(FullProfile.routeName);
-      // }
+      if (index == 2) {
+        Navigator.of(context).pushNamed(SavedMovies.routeName);
+      }
 
       _selectedIndex = index;
       _selectedIndexValue = index;

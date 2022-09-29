@@ -3,6 +3,7 @@ import 'package:helloworld/screens/allmovies.dart';
 import 'package:helloworld/screens/chooseIntrest.dart';
 import 'package:helloworld/screens/dashboard.dart';
 import 'package:helloworld/screens/details.dart';
+import 'package:helloworld/screens/savedmovies.dart';
 import 'package:helloworld/screens/signup.dart';
 
 void main() {
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
       
       // MyHomePage(title: "hello",)
       initialRoute: 
-      ChooseIntrest.routeName,
-      // "/",
+      // SavedMovies.routeName,
+      // Dashboard.routeName,
+      "/",
       routes: {
         Dashboard.routeName: (cxt) => Dashboard(),
 
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
         Details.routeName: (ctx) => Details(),
         Signup.routeName: (ctx) => Signup(),
         ChooseIntrest.routeName: (ctx) => ChooseIntrest(),
+        SavedMovies.routeName: (ctx) => SavedMovies(),
         
         
 

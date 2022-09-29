@@ -17,7 +17,7 @@ import 'package:helloworld/screens/widgets/mycarousel.dart';
 import '../utils/utils.dart';
 
 class Dashboard extends StatefulWidget {
-  static const routeName = '/dashboard';
+  static const routeName = '/';
   const Dashboard({Key? key}) : super(key: key);
 
   @override

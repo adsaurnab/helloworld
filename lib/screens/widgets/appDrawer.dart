@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld/screens/allmovies.dart';
 import 'package:helloworld/screens/dashboard.dart';
+import 'package:helloworld/screens/signup.dart';
 
 class Appdrawer extends StatelessWidget {
   const Appdrawer({
@@ -27,7 +28,7 @@ class Appdrawer extends StatelessWidget {
           title: Text("Dashboard"),
           onTap: () {
             Navigator.of(context)
-                .pushReplacementNamed(Dashboard.routeName);
+                .pushNamed(Dashboard.routeName);
           },
         ),
 
@@ -38,7 +39,17 @@ class Appdrawer extends StatelessWidget {
           title: Text("All Movies"),
           onTap: () {
             Navigator.of(context)
-                .pushReplacementNamed(AllMovies.routeName);
+                .pushNamed(AllMovies.routeName);
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.dashboard,
+          ),
+          title: Text("Sign Up"),
+          onTap: () {
+            Navigator.of(context)
+                .pushNamed(Signup.routeName);
           },
         ),
       ])));

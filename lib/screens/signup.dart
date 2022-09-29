@@ -6,7 +6,7 @@ import 'package:helloworld/screens/widgets/defaultwidgets.dart';
 import 'package:helloworld/utils/utils.dart';
 
 class Signup extends StatefulWidget {
-  static const routeName = '/';
+  static const routeName = '/signup';
   const Signup({Key? key}) : super(key: key);
 
   @override
