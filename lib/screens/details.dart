@@ -40,6 +40,7 @@ class _DetailsState extends State<Details> {
           onPressed: () => Navigator.of(context).pop(),
         ),
           title: Text("Details of rango"),
+          centerTitle: true,
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10),

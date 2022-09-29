@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:helloworld/model/ApiData.dart';
+import 'package:helloworld/screens/widgets/defaultwidgets.dart';
 
 class getandsortapidatafeaturedjobs extends StatelessWidget {
   
@@ -67,7 +68,7 @@ class featuredJobsWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(response["title"]),
+                   DefaultWidgets.movieTitleText(response["title"]),
                     Icon(FontAwesomeIcons.heart)
                   ],
                 ),

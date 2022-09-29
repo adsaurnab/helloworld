@@ -101,6 +101,8 @@ class _DashboardState extends State<Dashboard> {
                             // )
                           ),
 
+                          SizedBox(height: 30,),
+
                 Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

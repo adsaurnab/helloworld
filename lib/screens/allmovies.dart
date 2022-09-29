@@ -38,6 +38,7 @@ class _AllMoviesState extends State<AllMovies> {
           onPressed: () => Navigator.of(context).pop(),
         ),
           title: Text("All Movies"),
+          centerTitle: true,
         ),
         body: Container(
           child: Stack(

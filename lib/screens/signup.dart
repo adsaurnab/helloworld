@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:helloworld/screens/dashboard.dart';
+import 'package:helloworld/screens/widgets/defaultFormButton.dart';
 import 'package:helloworld/screens/widgets/defaultwidgets.dart';
 import 'package:helloworld/utils/utils.dart';
 
@@ -44,6 +45,7 @@ class _SignupState extends State<Signup> {
           
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     
@@ -190,40 +192,7 @@ class _SignupState extends State<Signup> {
                   Utils.sizedboxheight10(),
                   Utils.sizedboxheight10(),
           
-                  Container(
-                    width: 350,
-                    height: 60,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            // side: BorderSide(color: Colors.red)
-                          )
-                        )
-                      ),
-              
-                      child: const Text("Sign Up",
-                        style:  TextStyle(
-                          fontSize: 20,
-                          // fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      onPressed: () {
-                        // _submit();
-          
-                        if (!_formKey.currentState!.validate()) {
-                          // Invalid!
-                          return;
-                        }
-                        else{
-                          Navigator.pushNamed(context, Dashboard.routeName);
-                        }
-                        
-                      },
-                      
-                    ),
-                  )
+                  Formbuttondefault(formKey: _formKey, text: "Signup")
                 ],
           
               ),
@@ -232,3 +201,4 @@ class _SignupState extends State<Signup> {
     );
   }
 }
+

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:helloworld/model/ApiData.dart';
 import 'package:helloworld/screens/details.dart';
+import 'package:helloworld/screens/widgets/defaultwidgets.dart';
+import 'package:helloworld/utils/utils.dart';
 
 class getandsortapidatafeatured extends StatelessWidget {
   final mywidget;
@@ -71,6 +73,7 @@ class featuredWidget extends StatelessWidget {
         width: 150,
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -82,11 +85,12 @@ class featuredWidget extends StatelessWidget {
     
             Container(
               height: 150,
-              child: Image.network(response["imagePath"])),
+              child: Center(child: Image.network(response["imagePath"]))),
+              SizedBox(height: 5,),
     
             Container(
               // width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              // padding: EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -97,6 +101,36 @@ class featuredWidget extends StatelessWidget {
                 ],
               ),
             ),
+
+            Container(
+              child: DefaultWidgets.movieTitleText(response["title"]),
+            ),
+            SizedBox(height: 5,),
+
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      // Icon(Icons.lock_clock),
+                      DefaultWidgets.movieTimeIcon(Icons.lock_clock),
+                      DefaultWidgets.movieTimeText("1h 30 min")
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+
+                     DefaultWidgets.movieTimeIcon(Icons.people),
+                      // Icon(Icons.people),
+                      DefaultWidgets.movieTimeText("5k")
+                      
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

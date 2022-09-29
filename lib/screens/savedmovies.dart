@@ -42,6 +42,7 @@ class _SavedMoviesState extends State<SavedMovies> {
           onPressed: () => Navigator.of(context).pop(),
         ),
           title: Text("Saved Movie"),
+          centerTitle: true,
           ),
 
         body: Container(

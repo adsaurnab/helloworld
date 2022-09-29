@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:helloworld/model/ApiData.dart';
+import 'package:helloworld/screens/dashboard.dart';
+import 'package:helloworld/screens/widgets/defaultButton.dart';
+import 'package:helloworld/screens/widgets/defaultFormButton.dart';
 import 'package:helloworld/screens/widgets/defaultwidgets.dart';
 import 'package:helloworld/utils/utils.dart';
 
@@ -17,16 +20,40 @@ class ChooseIntrest extends StatefulWidget {
 
 class _ChooseIntrestState extends State<ChooseIntrest> {
   var apidata;
+  List ticked = [];
+  bool loading = true;
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   getdata() async{
    apidata = await  ApiData().getApiData();
+
+   for (var i=0; i<apidata.length; i++){
+      setState(() {
+        
+      ticked.add(0);
+      });
+
+      // ticked[i]=0;
+
+    }
+    if(apidata != null || apidata.isEmpty){
+      setState(() {
+        loading = false;
+      });
+      
+    }
+
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-   getdata();
+    getdata();
+
+    
+
+    
     
   }
   @override
@@ -61,15 +88,7 @@ class _ChooseIntrestState extends State<ChooseIntrest> {
                       );
                     } else {
 
-                      List ticked = [];
-
-                      for (var i=0; i<response.data.length; i++){
-                        
-                        ticked.add(0);
-
-                        // ticked[i]=0;
-
-                      }
+                      
                       
       
                       return GridView.builder(
@@ -100,17 +119,17 @@ class _ChooseIntrestState extends State<ChooseIntrest> {
                                     InkWell(
                                       onTap: (){
                                         if(ticked[index] == 0){
-                                          // setState(() {
+                                          setState(() {
                                             ticked[index] = 1;
                                             print(ticked);
                                             print(ticked[index]);
-                                          // });
+                                          });
                                           
                                         }
                                         else{
-                                          // setState(() {
+                                          setState(() {
                                             ticked[index] = 0;
-                                          // });
+                                          });
                                           
                                         }
 
@@ -158,7 +177,12 @@ class _ChooseIntrestState extends State<ChooseIntrest> {
                                     });
                     }
                   }
-                )
+                ),
+                Utils.sizedboxheight10(),
+                Utils.sizedboxheight10(),
+                Utils.sizedboxheight10(),
+
+                buttondefault( text: "Next")
       
               ],
             )

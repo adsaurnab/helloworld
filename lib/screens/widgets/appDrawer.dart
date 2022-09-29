@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld/screens/allmovies.dart';
+import 'package:helloworld/screens/chooseIntrest.dart';
 import 'package:helloworld/screens/dashboard.dart';
 import 'package:helloworld/screens/signup.dart';
 
@@ -34,7 +35,7 @@ class Appdrawer extends StatelessWidget {
 
         ListTile(
           leading: Icon(
-            Icons.dashboard,
+            Icons.movie,
           ),
           title: Text("All Movies"),
           onTap: () {
@@ -42,9 +43,20 @@ class Appdrawer extends StatelessWidget {
                 .pushNamed(AllMovies.routeName);
           },
         ),
+
         ListTile(
           leading: Icon(
-            Icons.dashboard,
+            Icons.check,
+          ),
+          title: Text("Choose Interest"),
+          onTap: () {
+            Navigator.of(context)
+                .pushNamed(ChooseIntrest.routeName);
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.app_registration,
           ),
           title: Text("Sign Up"),
           onTap: () {
