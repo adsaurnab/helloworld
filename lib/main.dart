@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helloworld/screens/allmovies.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home:  MyHomePage(title: "hello",)
+      home:  AllMovies()
+      
+      // MyHomePage(title: "hello",)
     );
   }
 }
